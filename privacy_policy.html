@@ -121,35 +121,16 @@
             border-top: 1px solid #e0e0e0;
         }
 
-        .lang-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #000;
-            color: #fff;
-            padding: 8px 16px;
-            border: none;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
         .hidden {
             display: none;
         }
     </style>
 </head>
 <body>
-    <button class="lang-switcher" onclick="toggleLanguage()">
-        <span class="ko-lang">ENGLISH</span>
-        <span class="en-lang hidden">한국어</span>
-    </button>
-
     <!-- Korean Content -->
     <div class="ko-content">
         <h1>개인정보 처리방침</h1>
-        <p class="last-updated">최종 수정일: 2025년 1월 2일</p>
+        <p class="last-updated">최종 수정일: 2025년 11월 1일</p>
 
         <h2>개요</h2>
         <p>FitGenie("우리", "본 앱")는 귀하의 개인정보 보호를 최우선으로 생각합니다. 본 개인정보 처리방침은 피트니스 애플리케이션 사용 시 귀하의 개인정보가 어떻게 처리되는지 설명합니다.</p>
@@ -231,14 +212,14 @@
 
         <div class="footer">
             <p><strong>FitGenie - 당신의 개인 AI 피트니스 코치</strong></p>
-            <p>본 개인정보 처리방침은 2025년 1월 2일부터 유효하며, 로컬 데이터 처리에 대한 GDPR, CCPA 및 호주 개인정보 보호 원칙을 준수합니다.</p>
+            <p>본 개인정보 처리방침은 2025년 11월 1일부터 유효하며, 로컬 데이터 처리에 대한 GDPR, CCPA 및 호주 개인정보 보호 원칙을 준수합니다.</p>
         </div>
     </div>
 
     <!-- English Content -->
     <div class="en-content hidden">
         <h1>PRIVACY POLICY</h1>
-        <p class="last-updated">Last Updated: January 2, 2025</p>
+        <p class="last-updated">Last Updated: November 1, 2025</p>
 
         <h2>Overview</h2>
         <p>FitGenie ("we", "our", "the app") prioritizes your privacy. This Privacy Policy explains how your personal information is processed when using our fitness application.</p>
@@ -320,37 +301,26 @@
 
         <div class="footer">
             <p><strong>FitGenie - Your Personal AI Fitness Coach</strong></p>
-            <p>This Privacy Policy is effective as of January 2, 2025 and complies with GDPR, CCPA, and Australian Privacy Principles for local data processing.</p>
+            <p>This Privacy Policy is effective as of November 1, 2025 and complies with GDPR, CCPA, and Australian Privacy Principles for local data processing.</p>
         </div>
     </div>
 
     <script>
-        // Get language from URL parameter or default to Korean
+        // Get language from URL parameter and display appropriate content
         const urlParams = new URLSearchParams(window.location.search);
-        const defaultLang = urlParams.get('lang') || 'ko';
-        let currentLang = defaultLang;
+        const lang = urlParams.get('lang') || 'ko';
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ko' ? 'en' : 'ko';
-            updateLanguage();
-        }
-
-        function updateLanguage() {
-            const koElements = document.querySelectorAll('.ko-content, .ko-lang');
-            const enElements = document.querySelectorAll('.en-content, .en-lang');
-
-            if (currentLang === 'ko') {
-                koElements.forEach(el => el.classList.remove('hidden'));
-                enElements.forEach(el => el.classList.add('hidden'));
-            } else {
-                koElements.forEach(el => el.classList.add('hidden'));
-                enElements.forEach(el => el.classList.remove('hidden'));
-            }
-        }
-
-        // Initialize with correct language
         document.addEventListener('DOMContentLoaded', () => {
-            updateLanguage();
+            const koContent = document.querySelector('.ko-content');
+            const enContent = document.querySelector('.en-content');
+
+            if (lang === 'en') {
+                koContent.classList.add('hidden');
+                enContent.classList.remove('hidden');
+            } else {
+                koContent.classList.remove('hidden');
+                enContent.classList.add('hidden');
+            }
         });
     </script>
 </body>
